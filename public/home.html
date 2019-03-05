@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Super Awesome Mail</title>
+</head>
+<body>
+	<header>
+		<h1>Mail is Cool!</h1>
+	</header>
+	<h3>Select Some Options:</h3>
+	<form action="/getRate" method="GET">
+		Select a post type:
+		<br>
+		<select name="types">
+			<option>Letters (Stamped)</option>
+			<option>Letters (Metered)</option>
+			<option>Large Envelopes (Flats)</option>
+			<option>First-Class Package Service--Retail</option>
+		</select>
+		<br>
+		Weight in ounces:
+		<br>
+		<input type="text" name="weight">
+		<br>
+		<input type="submit" value="Calculate">
+	</form>
+</body>
+</html>
