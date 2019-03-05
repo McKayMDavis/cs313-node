@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Super Awesome Mail</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 	<header>
@@ -11,7 +12,7 @@
 	<form action="/getRate" method="GET">
 		Select a post type:
 		<br>
-		<select name="types">
+		<select name="types" id="types">
 			<option>Letters (Stamped)</option>
 			<option>Letters (Metered)</option>
 			<option>Large Envelopes (Flats)</option>
@@ -20,9 +21,31 @@
 		<br>
 		Weight in ounces:
 		<br>
-		<input type="text" name="weight">
+		<input type="text" id="weight" name="weight" required="required">
 		<br>
 		<input type="submit" value="Calculate">
 	</form>
+	<script type="text/javascript">
+		$('#weight').change(function() {
+			var selected = $('#types option:selected').text();
+			var weight = parseInt(this.value);
+			if (selected == "Letters (Stamped)" || selected == "Letters (Metered)") {
+				if (weight > 3.5 || weight <= 0) {
+					$('#weight').val(' ');
+					alert("Weight cannot be above 3.5 or below 0 for a letter.");
+				}
+			} else if (selected == "Large Envelopes (Flats)") {
+				if (weight > 13 || weight <= 0) {
+					$('#weight').val(' ');
+					alert("Weight cannot be above 13 or below 0 for a large envelope.");
+				}	
+			} else if (selected == "First-Class Package Service--Retail") {
+				if (weight > 13 || weight <= 0) {
+					$('#weight').val(' ');
+					alert("Weight cannot be above 13 or below 0 for a package.");
+				}
+			}
+		});
+	</script>
 </body>
 </html>
